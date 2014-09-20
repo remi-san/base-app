@@ -94,7 +94,6 @@ public class HibernateUser implements User {
     @Column(name = "user_enabled")
     private boolean enabled;
 
-    @Transient
     @XmlTransient
     @JsonIgnore
     @Column(name = "user_activation_token", length = 50, unique = true)
