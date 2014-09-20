@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	<head th:replace="fragments/layout :: head">
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		
+		<title>Red Alert!</title>
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" /><!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" /><!-- Optional theme -->
+		<link rel="stylesheet" href="../../../resources/styles/ratemydates.css" th:href="@{|/resources/styles/ratemydates.css|}" /><!-- ratemydates styles -->
+	
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><!-- Latest compiled and minified JavaScript -->
+	    
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	</head>
+	<body>
+		<div class="wrapper gradient">
+			<!-- Header -->
+			<header th:replace="fragments/layout :: header">
+				<nav class="navbar navbar-inverse navbar-static-top" role="navigation"></nav>
+			</header>
+			
+			<!-- Main -->
+			<main>
+				<div class="jumbotron">
+					<section class="container end-btn">
+				        <h1>Can't touch this!</h1>
+				        <p>
+				        	You can't access this part of the web site.
+				        </p>
+				        <div class="embed-responsive embed-responsive-16by9">
+				        	<iframe
+				        		src="https://player.vimeo.com/video/58322928?autoplay=1&amp;badge=0&amp;byline=0&amp;portrait=0&amp;title=0"
+				        		class="embed-responsive-item" 
+				        		webkitallowfullscreen="webkitallowfullscreen"
+				        		mozallowfullscreen="mozallowfullscreen"
+				        		allowfullscreen="allowfullscreen"></iframe>
+			        	</div>
+				        <p>
+				        	<a class="btn btn-primary btn-lg pull-right" role="button" href="../home.html" th:href="@{|/|}">
+				        		Back to Home &raquo;
+			        		</a>
+			        	</p>
+				    </section>
+			    </div>
+		    </main>
+		</div>
+		
+		<!-- Footer -->
+	    <footer th:replace="fragments/layout :: footer" role="contentinfo"></footer>
+	</body>
+</html>

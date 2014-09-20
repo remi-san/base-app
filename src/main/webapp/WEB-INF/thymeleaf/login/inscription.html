@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	<head th:replace="fragments/layout :: head">
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		
+		<title>Register</title>
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" /><!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" /><!-- Optional theme -->
+		<link rel="stylesheet" href="../../../resources/styles/ratemydates.css" th:href="@{|/resources/styles/ratemydates.css|}" /><!-- ratemydates styles -->
+	
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><!-- Latest compiled and minified JavaScript -->
+	    
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	</head>
+	<body>
+		<div class="wrapper">
+			<!-- Header -->
+			<header th:replace="fragments/layout :: header">
+				<nav class="navbar navbar-inverse navbar-static-top" role="navigation"></nav>
+			</header>
+			
+			<!-- Main -->
+			<main>
+				<div class="jumbotron gradient">
+					<section class="container">
+				        <h1>Subscribe</h1>
+				        <p>
+				        	Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+				        	Mauris id elit ut urna tempor euismod sit amet sed dolor.
+				        	Praesent eu tellus bibendum, porta quam vel, luctus dui.
+				        	Cras ac est sodales, luctus metus eget, mollis purus.
+				        	Suspendisse ut neque tempus ligula pretium ullamcorper pellentesque ut elit.
+				        	Praesent accumsan tortor turpis, at rutrum eros lacinia non.
+				        	Vivamus ornare lectus in nulla laoreet, eget faucibus ipsum dapibus.
+				        	Phasellus molestie nisi tempus nisi rhoncus porttitor.
+				        	Cras sed justo id est elementum convallis.
+				        </p>
+				    </section>
+			    </div>
+			    <section class="container">
+			    
+			    	<form class="form-horizontal" role="form" method="post" action="../main/home.html" th:action="@{/subscribe.html}" th:object="${user}" >
+						
+						<!-- Errors -->
+						<div th:if="${#fields.hasErrors()}" class="col-sm-offset-2 col-sm-8 alert alert-danger alert-dismissible" role="alert">
+							<button type="button" class="close" data-dismiss="alert">
+								<span aria-hidden="true">&times;</span>
+								<span class="sr-only">Close</span>
+							</button>
+							<ul>
+							    <li th:each="e : ${#fields.detailedErrors()}">
+							        <span th:text="${e.global}? '*' : ${e.fieldName}">The field name</span> : 
+							        <span th:text="${e.message}">The error message</span>
+							    </li>
+							</ul>
+						</div>
+						
+						<!-- e-mail -->
+						<fieldset
+							class="form-group required has-feedback has-error"
+							th:class="${#fields.hasErrors('email')? 'form-group required has-feedback has-error' : #fields.hasErrors() ? 'form-group required has-feedback has-success' : 'form-group required'}">
+						    <label for="inputEmail" class="col-sm-4 control-label">E-mail</label>
+						    <div class="col-sm-6">
+						        <input type="email" class="form-control" id="inputEmail" name="email" th:field="*{email}" maxlength="255" required="required" placeholder="Enter your e-mail address here" />
+						        <span class="glyphicon glyphicon-ok form-control-feedback" th:if="${#fields.hasErrors() and !#fields.hasErrors('email')}"></span>
+						        <span class="glyphicon glyphicon-remove form-control-feedback" th:if="${#fields.hasErrors('email')}"></span>
+						        <span class="help-block" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">e-mail Error</span>
+						    </div>
+						</fieldset>
+						
+						<!-- Login -->
+						<fieldset
+							class="form-group required has-feedback has-error"
+							th:class="${#fields.hasErrors('login')? 'form-group required has-feedback has-error' : #fields.hasErrors() ? 'form-group required has-feedback has-success' : 'form-group required'}">
+						    <label for="inputLogin" class="col-sm-4 control-label">Username</label>
+						    <div class="col-sm-6">
+						        <input type="text" class="form-control" id="inputLogin" name="login" th:field="*{login}" maxlength="255" required="required" placeholder="Enter a screen name here" />
+						        <span class="glyphicon glyphicon-ok form-control-feedback" th:if="${#fields.hasErrors() and !#fields.hasErrors('login')}"></span>
+						        <span class="glyphicon glyphicon-remove form-control-feedback" th:if="${#fields.hasErrors('login')}"></span>
+						        <span class="help-block" th:if="${#fields.hasErrors('login')}" th:errors="*{login}">login Error</span>
+						    </div>
+						</fieldset>
+						
+						<!-- Password -->
+						<fieldset
+							class="form-group required has-feedback has-error"
+							th:class="${#fields.hasErrors('plainPassword')? 'form-group required has-feedback has-error' : #fields.hasErrors() ? 'form-group required has-feedback has-success' : 'form-group required'}">
+						    <label for="inputPlainPassword" class="col-sm-4 control-label">Password</label>
+						    <div class="col-sm-6">
+						        <input type="password" class="form-control" id="inputPlainPassword" name="plainPassword" th:field="*{plainPassword}" maxlength="255" required="required" placeholder="Enter your password here" />
+						        <span class="glyphicon glyphicon-ok form-control-feedback" th:if="${#fields.hasErrors() and !#fields.hasErrors('plainPassword')}"></span>
+						        <span class="glyphicon glyphicon-remove form-control-feedback" th:if="${#fields.hasErrors('plainPassword')}"></span>
+						        <span class="help-block" th:if="${#fields.hasErrors('plainPassword')}" th:errors="*{plainPassword}">password Error</span>
+						    </div>
+						</fieldset>
+						
+						<!-- Confirm password -->
+						<fieldset
+							class="form-group required has-feedback has-error"
+							th:class="${#fields.hasErrors('plainPasswordConfirmation')? 'form-group required has-feedback has-error' : #fields.hasErrors() ? 'form-group required has-feedback has-success' : 'form-group required'}">
+						    <label for="inputPlainPasswordConfirmation" class="col-sm-4 control-label">Confirm password</label>
+						    <div class="col-sm-6">
+						        <input type="password" class="form-control" id="inputPlainPasswordConfirmation" name="plainPasswordConfirmation" th:field="*{plainPasswordConfirmation}" maxlength="255" required="required" placeholder="Confirm your password here" />
+						        <span class="glyphicon glyphicon-ok form-control-feedback" th:if="${#fields.hasErrors() and !#fields.hasErrors('plainPasswordConfirmation')}"></span>
+						        <span class="glyphicon glyphicon-remove form-control-feedback" th:if="${#fields.hasErrors('plainPasswordConfirmation')}"></span>
+						        <span class="help-block" th:if="${#fields.hasErrors('plainPasswordConfirmation')}" th:errors="*{plainPasswordConfirmation}">password Error</span>
+						    </div>
+						</fieldset>
+						
+						<!-- Submit -->
+						<fieldset class="form-group">
+						    <div class="col-sm-10 text-right">
+						        <button type="submit" class="btn btn-success btn-lg">Register</button>
+						    </div>
+					    </fieldset>
+					</form>	
+			    </section>
+		    </main>
+		</div>
+		
+		<!-- Footer -->
+	    <footer th:replace="fragments/layout :: footer" role="contentinfo"></footer>
+	</body>
+</html>

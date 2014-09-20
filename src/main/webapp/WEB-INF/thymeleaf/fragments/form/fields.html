@@ -1,0 +1,47 @@
+<form>
+	<!-- Hidden -->
+	<span th:fragment="hidden">
+		<input type="hidden" class="form-control" id="id" name="name" th:attr="id=${name}, name=${name}, value=${value}" />
+	</span>
+	
+	<!-- Text -->
+	<div th:fragment="text">
+		<fieldset
+			th:class="${#fields.hasErrors(name)? 'form-group required has-feedback has-error' : #fields.hasErrors() ? 'form-group required has-feedback has-success' : 'form-group required'}">
+		    <label for="input" class="col-sm-3 control-label" th:attr="for=${name}" th:text="${label}">Field</label>
+		    <div class="col-sm-9">
+		        <input
+		        	type="text" class="form-control"
+		        	id="input" name="name"
+		        	maxlength="255" required="required"
+		        	placeholder="Placeholder"
+		        	th:attr="id=${name}, name=${name}, value=${value}, placeholder=${placeholder}, type=${type}"/>
+		        <span class="glyphicon glyphicon-ok form-control-feedback" th:if="${#fields.hasErrors() and !#fields.hasErrors(name)}"></span>
+		        <span class="glyphicon glyphicon-remove form-control-feedback" th:if="${#fields.hasErrors(name)}"></span>
+		        <span class="help-block" th:if="${#fields.hasErrors(name)}" th:errors="${entity}">Error</span>
+		    </div>
+		</fieldset>
+	</div>
+	<!-- Text -->
+	<div th:fragment="checkbox">
+		<fieldset
+			th:class="${#fields.hasErrors(name)? 'form-group has-feedback has-error' : #fields.hasErrors() ? 'form-group has-feedback has-success' : 'form-group'}">
+		    <label for="input" class="col-sm-3 control-label" th:attr="for=${name}" th:text="${label}">Field</label>
+		    <div class="col-sm-9">
+		        <input
+		        	type="checkbox"
+		        	id="input"
+		        	th:attr="id=${name}, name=${name}, checked=${checked}, value=${value}"/>
+		    </div>
+		</fieldset>
+	</div>
+	
+	<!-- Submit -->
+	<div th:fragment="submit">
+		<fieldset class="form-group">
+		    <div class="col-sm-12 text-right">
+		        <button type="submit" class="btn btn-success" th:text="${label}">Submit</button>
+		    </div>
+	    </fieldset>
+    </div>
+</form>

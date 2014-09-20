@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<beans:import resource="classpath:/META-INF/spring/security-aop.xml" />
+	
+	<beans:bean id="defaultPageRequest" class="org.springframework.data.domain.PageRequest">
+        <beans:constructor-arg index="0" value="0" />
+        <beans:constructor-arg index="1" value="20" />
+        <beans:constructor-arg index="2" ref="defaultSort" />
+    </beans:bean>
+    
+    <beans:bean id="defaultSort" class="org.springframework.data.domain.Sort">
+    	<beans:constructor-arg value="id" />
+    </beans:bean>
+    
+    <beans:bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+	    <beans:property name="formatters">
+	        <beans:list>
+	            <beans:bean class="net.remisan.base.formatter.SortFormatter"/>
+	        </beans:list>
+	    </beans:property>
+	</beans:bean>
+    
+    <beans:bean id="defaultSortResolver" class="org.springframework.data.web.SortHandlerMethodArgumentResolver">
+    	<beans:property name="fallbackSort" ref="defaultSort" />
+    </beans:bean>
+    
+    <!-- Enables the Spring MVC @Controller programming model -->
+    <annotation-driven conversion-service="conversionService">
+        <argument-resolvers>
+            <beans:bean class="org.springframework.data.web.PageableHandlerMethodArgumentResolver">
+                <beans:constructor-arg ref="defaultSortResolver" />
+                <beans:property name="maxPageSize" value="20" />
+                <beans:property name="oneIndexedParameters" value="true" />
+                <beans:property name="pageParameterName" value="page" />
+                <beans:property name="sizeParameterName" value="size" />
+                <beans:property name="fallbackPageable" ref="defaultPageRequest" />
+            </beans:bean>
+        </argument-resolvers>
+        <message-converters>
+            <!-- Use the HibernateAware mapper instead of the default -->
+            <beans:bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <beans:property name="objectMapper">
+                    <beans:bean class="net.remisan.base.app.serialization.HibernateAwareObjectMapper" />
+                </beans:property>
+            </beans:bean>
+        </message-converters>
+    </annotation-driven>
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<beans:bean id="templateResolver" 
+        class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+        <beans:property name="prefix" value="/WEB-INF/thymeleaf/" />
+        <beans:property name="suffix" value=".html" />
+        <beans:property name="templateMode" value="HTML5" />
+        <!-- Template cache is set to false (default is true).        -->
+        <beans:property name="cacheable" value="false" />
+    </beans:bean>
+
+    <beans:bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+        <beans:property name="templateResolver" ref="templateResolver" />
+        <beans:property name="additionalDialects">
+            <beans:set>
+                <beans:bean class="org.thymeleaf.extras.springsecurity3.dialect.SpringSecurityDialect" />
+            </beans:set>
+        </beans:property>
+    </beans:bean>
+
+    <beans:bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+        <beans:property name="templateEngine" ref="templateEngine" />
+    </beans:bean>
+	
+	<beans:bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <beans:property name="defaultErrorView" value="error/default"/>
+        <beans:property name="warnLogCategory" value="warn"/>
+    </beans:bean>
+	
+	<context:component-scan base-package="net.remisan" />
+	
+</beans:beans>

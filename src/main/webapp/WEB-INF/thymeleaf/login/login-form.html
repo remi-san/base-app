@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	<head th:replace="fragments/layout :: head">
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		
+		<title>Login</title>
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" /><!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" /><!-- Optional theme -->
+		<link rel="stylesheet" href="../../../resources/styles/ratemydates.css" th:href="@{|/resources/styles/ratemydates.css|}" /><!-- ratemydates styles -->
+	
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><!-- Latest compiled and minified JavaScript -->
+	    
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	</head>
+	<body>
+		<div class="wrapper">
+			<!-- Header -->
+			<header th:replace="fragments/layout :: header">
+				<nav class="navbar navbar-inverse navbar-static-top" role="navigation"></nav>
+			</header>
+			
+			<!-- Main -->
+			<main>
+			    <section class="container">
+			    
+					<div class="col-sm-offset-3 col-sm-6">
+						<div class="panel panel-default">
+						
+							<div class="panel-heading text-center">Sign in</div>
+						
+							<div class="panel-body">
+							
+								<div th:if="${error}" class="alert alert-danger alert-dismissible" role="alert">
+									<button type="button" class="close" data-dismiss="alert">
+										<span aria-hidden="true">&times;</span>
+										<span class="sr-only">Close</span>
+									</button>
+									<p>Wrong <strong>username / e-mail</strong> or <strong>password</strong></p>
+								</div>
+								
+								<div th:if="${ok}" class="alert alert-success alert-dismissible" role="alert">
+									<button type="button" class="close" data-dismiss="alert">
+										<span aria-hidden="true">&times;</span>
+										<span class="sr-only">Close</span>
+									</button>
+									<p th:text="${message}">It's OK!</p>
+								</div>
+							
+						    	<form class="form" role="form" method="post" action="../main/home.html" th:action="@{/j_spring_security_check}">
+									
+									<!-- login -->
+									<fieldset class="form-group">
+									    <label for="j_username" class="control-label">Login</label>
+									    <div>
+									        <input type="text" class="form-control" name="j_username" id="j_username" maxlength="40" required="required" placeholder="Your username or e-mail address" />
+									    </div>
+									</fieldset>
+									
+									<!-- login -->
+									<fieldset class="form-group">
+									    <label for="j_password" class="control-label">
+									    	Password <a href="lost.html" th:href="@{|/lost-password.html|}">(Lost your password?)</a>
+								    	</label>
+									    <div>
+									        <input type="password" class="form-control" name="j_password" id="j_password" maxlength="32" required="required" placeholder="Your password" />
+									    </div>
+									</fieldset>
+									
+									<!-- Last line -->
+									<fieldset class="form-group">
+										<!-- remember me -->
+									    <div class="text-right">
+									    	<label for="_spring_security_remember_me">Remember me</label>
+								            <input type="checkbox" id="_spring_security_remember_me" name="_spring_security_remember_me" />
+									    </div>
+									    
+									    <!-- Submit -->
+									    <div>
+									        <button type="submit" class="form-control btn btn-success">Login</button>
+									    </div>
+									</fieldset>
+								</form>	
+							</div>
+						</div>
+					</div>
+			    </section>
+		    </main>
+		</div>
+		
+		<!-- Footer -->
+	    <footer th:replace="fragments/layout :: footer" role="contentinfo"></footer>
+	</body>
+</html>

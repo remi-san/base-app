@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	<head th:fragment="head">
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		
+		<title th:text="${pageConfiguration.title}">Home page</title>
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" /><!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" /><!-- Optional theme -->
+		<link rel="stylesheet" href="../../../resources/styles/ratemydates.css" th:href="@{|/resources/styles/ratemydates.css|}" /><!-- ratemydates styles -->
+		
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<!--[if gte IE 9]>
+		    <style type="text/css">.gradient { filter: none; }</style>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="wrapper">
+			<!-- Header -->
+			<header th:fragment="header">
+				<!-- MENU NAVBAR -->
+				<nav class="navbar navbar-default navbar-static-top" role="navigation">
+					<div class="container">
+			
+						<!-- LEFT TITLE -->
+						<div class="navbar-header">
+							<!-- MINIFIED MENU BUTTON -->
+							<button class="navbar-toggle" type="button" data-toggle="collapse"
+								data-target=".bs-example-js-navbar-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							<!-- TITLE / LOGO -->
+							<a class="navbar-brand" href="../secure/admin.html" th:href="@{|/|}">
+								<span class="glyphicon glyphicon-fire"></span> BaseApp
+							</a>
+						</div>
+			
+						<!--  MAIN MENU -->
+						<div class="collapse navbar-collapse bs-example-js-navbar-collapse">
+			
+							<!-- MENU 1 BUTTON -->
+							<ul class="nav navbar-nav">
+								<li class="dropdown">
+									<!-- Button title -->
+									<a href="#" id="menu" role="button" class="dropdown-toggle" data-toggle="dropdown">
+										<span class="glyphicon glyphicon-home"></span> Menu <span class="caret"></span>
+									</a>
+									
+									<!-- Menu #1 submenu -->
+									<ul class="dropdown-menu" role="menu" aria-labelledby="menu">
+										<li role="presentation">
+											<a role="menuitem" tabindex="-1" href="#">
+												<span class="glyphicon glyphicon-align-justify"></span> Sub-menu 1
+											</a>
+										</li>
+										<li role="presentation">
+											<a role="menuitem" tabindex="-1" href="#">
+												<span class="glyphicon glyphicon-align-justify"></span> Sub-menu 2
+											</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+			
+							<div class="divider"></div>
+			
+							<!-- ADMIN MENU BUTTON -->
+							<ul class="nav navbar-nav" sec:authorize="hasRole('ROLE_ADMIN')">
+								<li class="dropdown">
+									<!-- Button title -->
+									<a href="#" id="admin" role="button" class="dropdown-toggle" data-toggle="dropdown">
+										<span class="glyphicon glyphicon-cog"></span> Admin <span class="caret"></span>
+									</a>
+									
+									<!-- Admin sub-menu -->
+									<ul class="dropdown-menu" role="menu" aria-labelledby="admin">
+										<li role="presentation"><a role="menuitem" tabindex="-1" href="../admin/pages/home.html" th:href="@{|/admin/|}">Index</a></li>
+									</ul>
+								</li>
+							</ul>
+			
+							<!-- RIGHT MENU -->
+			
+							<!-- AUTHENTICATED USER -->
+							<ul class="nav navbar-nav navbar-right" sec:authorize="isAuthenticated()">
+								<li class="dropdown">
+									<!-- Login AS menu title -->
+									<a href="#" id="auth" role="button" class="dropdown-toggle" data-toggle="dropdown">
+										<span class="glyphicon glyphicon-user"></span>
+										<span sec:authentication="name">John Doe</span>
+										<span class="caret"></span>
+									</a>
+									
+									<!-- Authenticated user submenu -->
+									<ul class="dropdown-menu" role="menu" aria-labelledby="auth">
+										<li role="presentation">
+											<a role="menuitem" tabindex="-1" href="../main/home.html" th:href="@{/j_spring_security_logout}">
+												<span class="glyphicon glyphicon-off"></span> Logout
+											</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+			
+							<!-- NOT AUTHENTICATED USER -->
+							<div class="nav navbar-nav navbar-right text-right" sec:authorize="isAnonymous()">
+			
+								<!-- Subscribe -->
+								<a href="../login/inscription.html" class="btn btn-success navbar-btn subscribe-btn" th:href="@{|/subscribe.html|}">
+									<span class="glyphicon glyphicon-star"></span> Register
+								</a>
+								
+								<!-- Login -->
+								<a href="../login/login-form.html" class="btn btn-default navbar-btn login-btn" th:href="@{|/login.html|}">
+									<span class="glyphicon glyphicon-off"></span> Login
+								</a>		
+								
+							</div>
+			
+						</div>
+					</div>
+				</nav>
+			</header>
+			<!-- Main -->
+			<main>
+				
+		    </main>
+		</div>
+		<!-- Footer -->
+	    <footer th:fragment="footer" role="contentinfo">
+			<div class="container">
+		        <p class="text-center text-muted credit">&copy; Rate My Dates 2014</p>
+	    	</div>
+	    	
+	    	<!-- JS INCLUSIONS -->
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><!-- Latest compiled and minified JavaScript -->
+	    </footer>
+	</body>
+</html>

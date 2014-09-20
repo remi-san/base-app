@@ -1,0 +1,23 @@
+﻿<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+   version="2.0">
+
+    <persistence-unit name="hib" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        
+        <class>net.remisan.app.model.impl.HibernateRole</class>
+        <class>net.remisan.app.model.impl.HibernateUser</class>
+        
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+            <property name="hibernate.cache.provider_class" value="org.hibernate.cache.EhCacheProvider" />
+            <property name="hibernate.show_sql" value="true" />
+            
+            <!-- les instances de la classe User est candidate à aller dans le cache niveau 2 -->
+            <property name="net.remisan.app.model.impl.HibernateUser" value="read-write"/>
+              
+        </properties>
+        
+    </persistence-unit>
+</persistence>

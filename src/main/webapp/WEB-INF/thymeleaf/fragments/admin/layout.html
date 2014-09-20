@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	
+	<head th:fragment="head" th:replace="fragments/layout :: head">
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		
+		<title>Admin</title>
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" /><!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" /><!-- Optional theme -->
+		<link rel="stylesheet" href="../../../resources/styles/ratemydates.css" th:href="@{|/resources/styles/ratemydates.css|}" /><!-- ratemydates styles -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><!-- Latest compiled and minified JavaScript -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	</head>
+	
+	<body
+		th:fragment="body"
+		th:with="
+			menus      = (${menus})      ? ${menus}      : ${#strings.arraySplit('user,role', ',')},
+			menuTitles = (${menuTitles}) ? ${menuTitles} : ${#strings.arraySplit('Users,Roles', ',')}">
+	
+		<div class="wrapper">
+		
+			<!-- Header -->
+			<header th:fragment="header" th:replace="fragments/layout :: header">
+				<nav class="navbar navbar-inverse navbar-static-top" role="navigation"></nav>
+			</header>
+			
+			<!-- Main -->
+			<main>
+				<section class="container end-btn">
+					<div class="row">
+			  			
+			      		<aside
+			      			class="col-md-3 hidden-print hidden-xs hidden-sm"
+			      			th:fragment="menu"
+			      			>
+			              	<ul class="nav nav-stacked nav-pills panel panel-default" id="sidebar">
+			                    <li th:each="menu, row : ${menus}">
+			                    	<a href="#" th:href="@{|/admin/${menu}/list|}" th:text="${menuTitles[row.index]}">menu</a>
+		                    	</li>
+			              	</ul>
+			      		</aside> 
+			      		  
+			      		<div class="col-md-9">
+			      		
+			      			<ol class="breadcrumb">
+							    <li><a href="#" th:href="@{|/admin/|}">Admin</a></li>
+							    <li class="active" th:text="${alias}">Entity</li>
+							</ol>
+			      		
+			      			<div th:replace="${templatePath} :: content">
+						        <h1>Welcome to the admin!</h1>
+						        <p>
+						        	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque urna ante, iaculis eget tempus a, varius aliquam lorem. Maecenas neque metus, tempor in purus a, convallis venenatis velit. Nunc facilisis lacus nisi, ornare pellentesque tellus fermentum at. Sed accumsan, ligula sit amet malesuada commodo, est dui pharetra massa, a lacinia diam velit sed turpis. Donec convallis diam et urna blandit rutrum. Sed interdum, urna viverra malesuada fermentum, mi nulla tempus ante, ac adipiscing mi eros eu lorem. Etiam pulvinar feugiat dictum. Cras at elit in quam congue malesuada nec vel velit. Aliquam vel aliquet lectus. Nullam cursus consectetur mauris, eget placerat nibh posuere a. Sed ut condimentum felis, in rhoncus enim. Vestibulum vulputate quam eu metus rhoncus, nec pulvinar lorem cursus. Vestibulum placerat orci eget consectetur consectetur. Aliquam et dui sem. Pellentesque varius magna at eros sollicitudin mattis.
+								</p>
+								<p>
+									Donec turpis massa, aliquam sit amet lectus et, aliquet convallis odio. Cras volutpat dapibus accumsan. Nulla vel vulputate nisi, sit amet euismod risus. Nulla velit nibh, venenatis vitae sem quis, scelerisque accumsan eros. Morbi felis urna, suscipit in leo sit amet, iaculis tincidunt purus. Duis pulvinar mauris a quam viverra interdum. Morbi condimentum augue purus, vitae vehicula magna venenatis non. Donec nec dui nec urna tincidunt viverra a nec justo. Fusce nisl urna, cursus sed magna a, pellentesque sollicitudin augue. Curabitur id erat non ligula egestas mollis nec ut sapien. Phasellus blandit feugiat urna, vitae posuere sapien vulputate sit amet. Donec varius non nibh a auctor. Phasellus lorem dui, varius et ultrices convallis, vehicula sit amet risus. Etiam venenatis, nunc varius fringilla dignissim, ipsum velit egestas ipsum, vitae rutrum mauris diam ut eros. Donec nec lectus eu lacus condimentum rutrum. Nam sed velit velit.
+								</p>
+								<p>
+									Suspendisse tristique ullamcorper enim, et commodo tellus venenatis non. Aliquam non faucibus est. Nulla nibh risus, cursus volutpat pretium ac, volutpat eu elit. Proin nec imperdiet urna, at consequat sem. Integer facilisis nunc nisi. Cras a dui malesuada, malesuada nulla id, lacinia massa. Pellentesque a nibh sit amet tortor varius rhoncus eu non odio. Suspendisse tempor leo at consectetur molestie. Fusce non nisi nec mi consequat ultricies vitae a libero. Sed tortor lorem, vulputate at ultrices in, accumsan ut urna. Integer eget euismod sapien. Suspendisse gravida fringilla faucibus. Nam ullamcorper enim id ullamcorper molestie. Etiam condimentum, tellus a tincidunt auctor, lacus orci malesuada ligula, ac gravida ligula diam vitae erat.
+								</p>
+								<p>
+									Nunc fermentum metus ac quam iaculis dictum. In rhoncus fermentum sollicitudin. Phasellus elementum ullamcorper tellus in varius. Suspendisse suscipit nisi eu egestas fringilla. Vestibulum at ante ac nibh egestas lacinia. Praesent eget arcu neque. Donec vitae enim at mauris faucibus aliquet eget imperdiet eros. Suspendisse eu viverra lectus. Vestibulum eu facilisis felis.
+								</p>
+								<p>	
+									Praesent nunc metus, gravida vel varius non, porttitor quis erat. Vestibulum pharetra, ipsum sit amet fringilla pretium, dolor purus pellentesque enim, eu tincidunt felis justo nec odio. Curabitur suscipit rhoncus lorem, et dapibus arcu rutrum in. Aliquam eleifend ullamcorper nibh quis rutrum. Cras lacinia pulvinar nibh et dapibus. Donec in consequat mi. Vivamus tincidunt semper enim, a porttitor diam. Vestibulum lacinia augue at mauris pharetra pellentesque. Proin dignissim velit dui, at vehicula dui lobortis vel. Nam nec lectus accumsan, ullamcorper dui id, sagittis turpis. Proin at placerat neque. Ut in posuere ligula. Integer dignissim nibh massa, non laoreet ipsum pharetra non.
+						        </p>
+						    </div>
+					    </div>
+					</div>
+			    </section>
+		    </main>
+		    
+		</div>
+		
+		<!-- Footer -->
+	    <footer th:fragment="footer" th:replace="fragments/layout :: footer" role="contentinfo"></footer>
+	    <script type="application/javascript" th:fragment="menuScript">
+	    $(document).ready(function(){
+		    $('#sidebar').affix({
+		        offset: {
+		            top: 60
+		        }
+		    });
+		    $(".tool-column a").tooltip(); 
+	    });
+	    </script>
+	    
+	</body>
+</html>

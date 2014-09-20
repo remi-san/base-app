@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="base-app">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="app-util-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/base-app-util/base-app-util">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="model-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/base-model/base-model">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="security-util-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/security-util/security-util">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="security-model-1.0.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/security-model/security-model">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="base-app"/>
+        <property name="java-output-path" value="/base-app/target/classes"/>
+    </wb-module>
+</project-modules>

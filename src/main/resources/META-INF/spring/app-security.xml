@@ -1,0 +1,38 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <http auto-config="true" use-expressions="true">
+    
+        <intercept-url pattern="/subscribe.html" access="isAnonymous()" />
+        <intercept-url pattern="/validate.html" access="isAnonymous()" />
+        <intercept-url pattern="/login.html" access="isAnonymous()" />
+        <intercept-url pattern="/retry-login.html" access="isAnonymous()" />
+        <intercept-url pattern="/lost-password.html" access="isAnonymous()" />
+        <intercept-url pattern="/reset-password.html" access="isAnonymous()" />
+        
+        <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+        
+        <form-login login-page="/login.html" default-target-url="/" authentication-failure-url="/retry-login.html" />
+        <logout logout-success-url="/" invalidate-session="true" />
+        <remember-me key="todochangethatkey"/>
+          
+        <access-denied-handler ref="accessDeniedHandler"/>
+        
+    </http>
+    
+    <beans:bean id="formValidator" class="net.remisan.base.model.validation.ValidationManager">
+        <beans:constructor-arg>
+            <beans:list>
+                <beans:bean class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+                <beans:bean class="net.remisan.security.validation.InscriptionFormValidator" />
+                <beans:bean class="net.remisan.security.validation.ResetPasswordFormValidator" />
+                <beans:bean class="net.remisan.app.validation.UserFormValidator" />
+            </beans:list>
+        </beans:constructor-arg>
+    </beans:bean>
+    
+</beans:beans>
