@@ -28,9 +28,9 @@
         <beans:constructor-arg>
             <beans:list>
                 <beans:bean class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
-                <beans:bean class="net.remisan.security.validation.InscriptionFormValidator" />
-                <beans:bean class="net.remisan.security.validation.ResetPasswordFormValidator" />
-                <beans:bean class="net.remisan.app.validation.UserFormValidator" />
+                <beans:bean class="net.remisan.security.form.validation.InscriptionFormValidator" />
+                <beans:bean class="net.remisan.security.form.validation.ResetPasswordFormValidator" />
+                <beans:bean class="net.remisan.app.form.validation.UserFormValidator" />
             </beans:list>
         </beans:constructor-arg>
     </beans:bean>

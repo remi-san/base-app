@@ -34,15 +34,6 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     @Override
     public User save(User user) throws BindException {
 
-        this.userUtil.preSave(user);
-        boolean isNew = user.isNew();
-
-        User u = this.manager.save(user);
-        
-        if (isNew) {
-            this.userUtil.postSave(u, true);
-        }
-
-        return u;
+        return this.manager.save(user);
     }
 }

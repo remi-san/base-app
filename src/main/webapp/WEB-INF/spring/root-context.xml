@@ -6,7 +6,17 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 	
 	<import resource="classpath:/META-INF/spring/base-controller.xml"/>
+	
 	<import resource="classpath:/META-INF/spring/security-objects-context.xml" />
+	<bean id="objectValidator" class="net.remisan.base.model.validation.ValidationManager">
+        <constructor-arg>
+            <list>
+                <bean class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+                <bean class="net.remisan.base.model.validation.UserValidator" />
+            </list>
+        </constructor-arg>
+    </bean>
+    
 	<import resource="classpath:/META-INF/spring/security-hibernate-context.xml" />
 	<import resource="classpath:/META-INF/spring/spring-security.xml" />
 	<import resource="classpath:/META-INF/spring/security-mail.xml" />

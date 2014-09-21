@@ -1,7 +1,7 @@
-package net.remisan.app.validation;
+package net.remisan.app.form.validation;
 
 import net.remisan.app.data.form.UserForm;
-import net.remisan.security.validation.util.UserValidationHelper;
+import net.remisan.base.model.validation.util.UserValidationHelper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
