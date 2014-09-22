@@ -63,9 +63,9 @@
 			      						<!-- id -->
 			      						<span th:with="name='id', value=*{id}" th:include="fragments/form/fields :: hidden" />
 			      						<!-- login -->
-			      						<div th:with="name='login', value=*{login}, label='Login', type='text', placeholder='johndoe42'" th:include="fragments/form/fields :: text" />
+			      						<div th:with="name='login', value=*{login}, label='Login', type='text', placeholder='johndoe42', required=true" th:include="fragments/form/fields :: text" />
 			      						<!-- email -->
-			      						<div th:with="name='email', value=*{email}, label='E-mail', type='email', placeholder='john.doe@isp.com'" th:include="fragments/form/fields :: text" />
+			      						<div th:with="name='email', value=*{email}, label='E-mail', type='email', placeholder='john.doe@isp.com', required=true" th:include="fragments/form/fields :: text" />
 			      						<!-- firstName -->
 			      						<div th:with="name='firstName', value=*{firstName}, label='First name', type='text', placeholder='John'" th:include="fragments/form/fields :: text" />
 									    <!-- lastName -->

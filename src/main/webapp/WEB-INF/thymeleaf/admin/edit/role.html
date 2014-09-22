@@ -62,7 +62,7 @@
 			      						<!-- id -->
 			      						<span th:with="name='id', value=*{id}" th:include="fragments/form/fields :: hidden" />
 			      						<!-- login -->
-			      						<div th:with="name='name', value=*{name}, label='Name', type='text', placeholder='ROLE_*'" th:include="fragments/form/fields :: text" />
+			      						<div th:with="name='name', value=*{name}, label='Name', type='text', placeholder='ROLE_*', required=true" th:include="fragments/form/fields :: text" />
 			      						
 			      						<!-- Submit -->
 										<div th:with="label='Submit'" th:include="fragments/form/fields :: submit" />
