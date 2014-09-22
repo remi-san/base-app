@@ -1,5 +1,7 @@
 package net.remisan.app.service.impl;
 
+import java.util.UUID;
+
 import net.remisan.app.manager.UserManager;
 import net.remisan.app.model.User;
 import net.remisan.app.service.UserService;
@@ -35,5 +37,12 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     public User save(User user) throws BindException {
 
         return this.manager.save(user);
+    }
+    
+    @Override
+    public User getNewInstance() throws InstantiationException, IllegalAccessException {
+        User u = super.getNewInstance();
+        u.setPassword(UUID.randomUUID().toString());
+        return u;
     }
 }
