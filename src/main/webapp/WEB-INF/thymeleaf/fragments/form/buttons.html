@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	<head></head>
+	<body>
+		
+		<!-- New -->
+		<a
+			th:fragment="show"
+			th:if="${entity.id}"
+			href="./show.html"
+			class="btn btn-default pull-right"
+			th:href="@{|/admin/${alias}/show/${entity.id}|}"
+			style="float:right;">
+			<span class="glyphicon glyphicon-eye-open"></span> Show
+		</a>
+		
+		<!-- New -->
+		<a
+			th:fragment="new"
+			href="./edit.html"
+			class="btn btn-default pull-right"
+			th:href="@{|/admin/${alias}/new|}"
+			style="float:right;">
+			<span class="glyphicon glyphicon-plus"></span> New
+		</a>
+		
+		<!-- Edit -->
+		<a
+			th:fragment="edit"
+			th:if="${entity.id}"
+			href="./edit.html"
+			class="btn btn-default pull-right"
+			th:href="@{|/admin/${alias}/edit/${entity.id}|}"
+			style="float:right;">
+			<span class="glyphicon glyphicon-pencil"></span> Edit
+		</a>
+		
+		<!-- Delete -->
+		<a
+			th:fragment="delete"
+			th:if="${entity.id}"
+			href="./list.html"
+			class="btn btn-default pull-right"
+			th:href="@{|/admin/${alias}/delete/${entity.id}|}"
+			style="float:right;">
+			<span class="glyphicon glyphicon-trash"></span> Delete
+		</a>
+		
+		<!-- List -->
+		<a
+			th:fragment="list"
+			href="./list.html"
+			class="btn btn-default pull-right"
+			th:href="@{|/admin/${alias}/list|}"
+			style="float:right;">
+			<span class="glyphicon glyphicon-th-list"></span> List
+		</a>
+	</body>
+</html>

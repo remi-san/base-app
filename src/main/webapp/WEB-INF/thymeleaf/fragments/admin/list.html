@@ -33,7 +33,7 @@
 			      			
 			      			<!-- LIST FRAGMENT -->
 			      			<div th:fragment="table">
-			      				<a href="./edit.html" class="btn btn-default pull-right" th:href="@{|/admin/${alias}/new|}" style="float:right;">New</a>
+			      				<a th:replace="fragments/form/buttons :: new">New</a>
 				      			<h1 th:text="${pageTitle}">Entity</h1>
 				      			<div class="table-responsive">
 					      			<table class="table table-striped table-hover table-condensed">

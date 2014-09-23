@@ -38,6 +38,9 @@
 			  			
 			      		<div class="col-md-9">
 			      			<div th:fragment="content">
+			      				<a th:replace="fragments/form/buttons :: delete">Delete</a>
+			      				<a th:replace="fragments/form/buttons :: list">List</a>
+			      				<a th:replace="fragments/form/buttons :: edit">Edit</a>
 			      				<h1>User</h1>
 			      				<div th:object="${entity}" class="entity list-group">
 			      					<div class="row attribute list-group-item"><span class="col-xs-4 attribute-name">Login</span><span class="col-xs-8 attribute-value" th:text="*{login}"></span></div>
